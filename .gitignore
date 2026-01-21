@@ -1,1 +1,8 @@
-.vs
+.vs/
+
+FlashCards/bin/
+FlashCards/obj/
+
+FlashCards.Client/bin/
+FlashCards.Client/obj/
+FlashCards.Client/obj/Debug/
