@@ -1,0 +1,57 @@
+﻿@page "/game"
+@rendermode InteractiveWebAssembly
+@inject NavigationManager NavigationManager
+
+<PageTitle>Flash Cards</PageTitle>
+
+<div class="page">
+    <div class="flashcard-container">
+        <div class="flashcards-container">
+            <h1>Flashcards Quiz</h1>
+            <div class="@(isFlipped ? "is-flipped" : "") flashcard">
+                <div class="front">
+                    <p id="question">
+                        @questions[index].Key
+                    </p>
+                </div>
+                <div class="back">
+                    <p id="answer">
+                        @questions[index].Value
+                    </p>
+                </div>
+            </div>
+            <button @onclick="FlipCard">Flip</button>
+            <button @onclick="NextCard">Next</button>
+        </div>
+    </div>
+</div>
+
+@code {
+    private int index = 0;
+
+    private List<KeyValuePair<string, string>> questions = new()
+    {
+        new KeyValuePair<string, string>("2+2", "4"),
+        new KeyValuePair<string, string>("1+4", "5"),
+        new KeyValuePair<string, string>("2-7", "-5"),
+        new KeyValuePair<string, string>("2-1", "1"),
+        new KeyValuePair<string, string>("2+2+7", "11")
+    };
+
+    private bool isFlipped = false;
+
+    private void FlipCard()
+    {
+        isFlipped = !isFlipped;
+    }
+
+    private void NextCard()
+    {
+        if (index + 1 == questions.Count)
+            index = 0;
+        else
+            index++;
+
+        FlipCard();
+    }
+}

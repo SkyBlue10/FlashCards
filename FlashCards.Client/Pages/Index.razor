@@ -1,18 +1,21 @@
 ﻿@page "/"
+@rendermode InteractiveWebAssembly
+@inject NavigationManager NavigationManager
 
 <PageTitle>Flash Cards</PageTitle>
 
 <div class="page">
-    <main>
-        <h1 class="name-game">Flash Cards</h1>
+    <h1 class="name-game">Flash Cards</h1>
 
-        <div class="menu">
-            <button>Play</button>
-            <button>Settings</button>
-        </div>
-    </main>
+    <div class="menu">
+        <button @onclick="NavigateToGamePage">Play</button>
+        <button>Settings</button>
+    </div>
 </div>
 
 @code {
-
+    private void NavigateToGamePage()
+    {
+        NavigationManager.NavigateTo("/game");
+    }
 }
